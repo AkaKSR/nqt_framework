@@ -1,0 +1,26 @@
+/* Layout */
+#rootView {
+    height: 100%;
+}
+
+#headerView {
+    background-color: green;
+}
+
+#contentView {
+    background-color: gray;
+    height: 100%;
+}
+
+#footerView {
+    background-color: white;
+}
+
+/* Inner Element */
+#listBtn {
+    float: right;
+}
+
+#listWidget {
+    width: 190rem;
+}
