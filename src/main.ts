@@ -2,14 +2,13 @@ import { QMainWindow, QWidget, QLabel, QPushButton, QIcon, QBoxLayout, Direction
 import * as path from "node:path";
 import sourceMapSupport from 'source-map-support';
 
-import fs from 'fs';
-
 // Custom Component
 import { Layout } from './template/layout';
 
 import { MainActivity } from './view/mainActivity';
 import { Header } from './template/header';
 import { Footer } from './template/footer';
+import { CSS } from './util/css';
 
 sourceMapSupport.install();
 
@@ -18,32 +17,25 @@ function main(): void {
   const rootView = new QWidget();
   rootView.setLayout(new QBoxLayout(Direction.TopToBottom));
   rootView.setObjectName("rootView");
-  // Parent View
 
   // Layout View
   const layout = new Layout();
-  // Layout View
 
   // Header
   layout.addHeaderClass(new Header());
-  // Header
 
   // Content
   layout.addContentClass(new MainActivity());
-  // Content
 
   // Footer
   layout.addFooterClass(new Footer());
-  // Footer
 
   // Add Parent View Widget
   layout.setRootLayout(rootView);
-  // Add Parent View Widget
 
   // CSS Area
-  const cssFile = fs.readFileSync(path.join(__dirname, '../assets/css/global.css'), 'utf-8');
-  rootView.setStyleSheet(cssFile);
-  // CSS Area
+  const css = new CSS("utf-8");
+  css.setCss(rootView, path.join(__dirname, '../assets/css/global.css'));
 
   // Window Object
   const win = new QMainWindow();
